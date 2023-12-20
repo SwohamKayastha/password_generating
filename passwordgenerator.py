@@ -12,13 +12,20 @@ def characters():
 
     special_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', '\\', ';', ':', "'", '"', '<', '>', ',', '.', '?', '/']
 
+    name = username()
     length = ask() #Asking the length of the password
-    event(length, uppercase, lowercase, numbers, special_characters) #Main event to generate password
+    result = event(length, uppercase, lowercase, numbers, special_characters) #Main event to generate password
+    file(result, name)
 
 def ask():
-    print("..Password Generator..\n")
     length = int(input("Enter the length of password:"))
     return length
+
+def username():
+    print("..Password Generator..\n")
+    user_name = input("Enter Username:")
+    return user_name
+
 
 def event(l, u, lwr, num, spec):
     password = ''
@@ -32,5 +39,13 @@ def event(l, u, lwr, num, spec):
 
     print("Password Generated:")
     print(f"Password:{password}")
+    return password
+
+
+def file(result, user_name):
+    file_path = ''
+
+    with open(file_path, 'a') as file_object:
+        file_object.write(f'{user_name} : {result}\n')
 
 characters()
